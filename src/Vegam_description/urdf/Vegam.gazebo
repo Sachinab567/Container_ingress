@@ -1,0 +1,111 @@
+<?xml version="1.0" ?>
+<robot name="Vegam" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="body_color" value="Gazebo/Silver"/>
+
+<!-- Base link physics -->
+<gazebo reference="base_link">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>false</self_collide>
+  <gravity>true</gravity>
+</gazebo>
+
+<!-- Wheel friction -->
+<gazebo reference="right_front_wheel_1">
+  <mu1>0.1</mu1>
+  <mu2>0.1</mu2>
+</gazebo>
+
+<gazebo reference="right_rear_wheel_1">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+</gazebo>
+
+<gazebo reference="left_front_wheel_1">
+  <mu1>0.1</mu1>
+  <mu2>0.1</mu2>
+</gazebo>
+
+<gazebo reference="left_rear_wheel_1">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+</gazebo>
+
+<!-- LIDAR -->
+<gazebo reference="lidar_link_1">
+  <sensor name="lidar_sensor" type="ray">
+
+    <update_rate>10</update_rate>
+
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>720</samples>
+          <min_angle>-3.14159</min_angle>
+          <max_angle>3.14159</max_angle>
+        </horizontal>
+      </scan>
+
+      <range>
+        <min>0.12</min>
+        <max>10.0</max>
+      </range>
+
+    </ray>
+
+    <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
+      <ros>
+        <remapping>~/out:=scan</remapping>
+      </ros>
+      <output_type>sensor_msgs/LaserScan</output_type>
+      <frame_name>lidar_link_1</frame_name>
+    </plugin>
+
+  </sensor>
+</gazebo>
+
+<!-- IMU -->
+<gazebo reference="imu_link_1">
+  <sensor name="imu_sensor" type="imu">
+
+    <update_rate>50</update_rate>
+
+    <plugin name="imu_controller" filename="libgazebo_ros_imu_sensor.so">
+      <ros>
+        <namespace>/</namespace>
+        <remapping>~/out:=imu</remapping>
+      </ros>
+      <initial_orientation_as_reference>false</initial_orientation_as_reference>
+      <frame_name>imu_link_1</frame_name>
+    </plugin>
+
+  </sensor>
+</gazebo>
+
+<!-- Differential Drive -->
+<gazebo>
+  <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+    <ros>
+      <namespace>/</namespace>
+    </ros>
+    
+    <left_joint>left_rear_joint</left_joint>
+    <right_joint>right_rear_joint</right_joint>
+
+    <wheel_separation>0.32</wheel_separation>
+    <wheel_radius>0.05</wheel_radius>
+
+    <command_topic>cmd_vel</command_topic>
+    <odometry_topic>odom</odometry_topic>
+    <odometry_frame>odom</odometry_frame>
+    <robot_base_frame>base_footprint</robot_base_frame>
+
+    <publish_odom>true</publish_odom>
+    <publish_odom_tf>true</publish_odom_tf>
+  </plugin>
+</gazebo>
+
+</robot>
+

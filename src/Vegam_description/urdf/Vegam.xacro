@@ -1,0 +1,229 @@
+<?xml version="1.0" ?>
+<robot name="Vegam" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<!-- Include materials, transmissions, and gazebo plugins -->
+<xacro:include filename="$(find Vegam_description)/urdf/materials.xacro"/>
+<xacro:include filename="$(find Vegam_description)/urdf/Vegam.trans"/>
+<xacro:include filename="$(find Vegam_description)/urdf/Vegam.gazebo"/>
+
+<!-- ================= BASE FOOTPRINT ================= -->
+<link name="base_footprint"/>
+
+<joint name="base_footprint_joint" type="fixed">
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
+<!-- ================= BASE LINK ================= -->
+<link name="base_link">
+
+  <inertial>
+    <origin xyz="0 0 0.07" rpy="0 0 0"/>
+    <mass value="99.5"/>
+    <inertia ixx="2.147" iyy="1.064" izz="3.098" ixy="0" iyz="0.0029" ixz="0"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+
+</link>
+
+
+<!-- ================= RIGHT FRONT WHEEL ================= -->
+<link name="right_front_wheel_1">
+
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="1.2"/>
+    <inertia ixx="0.00154" iyy="0.00081" izz="0.00081" ixy="0" iyz="0" ixz="0"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="-0.15 0.159882 -0.051"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/right_front_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+
+  <collision>
+    <origin xyz="-0.15 0.159882 -0.051"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/right_front_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+
+</link>
+
+
+<!-- ================= RIGHT REAR WHEEL ================= -->
+<link name="right_rear_wheel_1">
+
+  <inertial>
+    <mass value="0.8"/>
+    <inertia ixx="0.00104" iyy="0.00057" izz="0.00050" ixy="0" iyz="0" ixz="0"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="-0.15 -0.159882 -0.051"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/right_rear_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+
+  <collision>
+    <origin xyz="-0.15 -0.159882 -0.051"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/right_rear_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+
+</link>
+
+
+<!-- ================= LEFT REAR WHEEL ================= -->
+<link name="left_rear_wheel_1">
+
+  <inertial>
+    <mass value="1.2"/>
+    <inertia ixx="0.00154" iyy="0.00081" izz="0.00081" ixy="0" iyz="0" ixz="0"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0.15 -0.159882 -0.051"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/left_rear_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+
+  <collision>
+    <origin xyz="0.15 -0.159882 -0.051"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/left_rear_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+
+</link>
+
+
+<!-- ================= LEFT FRONT WHEEL ================= -->
+<link name="left_front_wheel_1">
+
+  <inertial>
+    <mass value="1.2"/>
+    <inertia ixx="0.00154" iyy="0.00081" izz="0.00081" ixy="0" iyz="0" ixz="0"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0.15 0.159882 -0.051"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/left_front_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+
+  <collision>
+    <origin xyz="0.15 0.159882 -0.051"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/left_front_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+
+</link>
+
+
+<!-- ================= LIDAR ================= -->
+<link name="lidar_link_1">
+
+  <inertial>
+    <mass value="0.45"/>
+    <inertia ixx="0.000147" iyy="0.000147" izz="0.000278" ixy="0" iyz="0" ixz="0"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0 0.1 -0.1307"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/lidar_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+
+</link>
+
+
+<!-- ================= IMU ================= -->
+<link name="imu_link_1">
+
+  <inertial>
+    <mass value="0.18"/>
+    <inertia ixx="0.000029" iyy="0.000029" izz="0.00005" ixy="0" iyz="0" ixz="0"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0 0.25 -0.1107"/>
+    <geometry>
+      <mesh filename="package://Vegam_description/meshes/imu_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+
+</link>
+
+
+<!-- ================= WHEEL JOINTS ================= -->
+
+<joint name="right_front_joint" type="continuous">
+  <origin xyz="0.15 -0.159882 0.051"/>
+  <parent link="base_link"/>
+  <child link="right_front_wheel_1"/>
+  <axis xyz="1 0 0"/>
+</joint>
+
+<joint name="right_rear_joint" type="continuous">
+  <origin xyz="0.15 0.159882 0.051"/>
+  <parent link="base_link"/>
+  <child link="right_rear_wheel_1"/>
+  <axis xyz="-1 0 0"/>
+</joint>
+
+<joint name="left_rear_joint" type="continuous">
+  <origin xyz="-0.15 0.159882 0.051"/>
+  <parent link="base_link"/>
+  <child link="left_rear_wheel_1"/>
+  <axis xyz="-1 0 0"/>
+</joint>
+
+<joint name="left_front_joint" type="continuous">
+  <origin xyz="-0.15 -0.159882 0.051"/>
+  <parent link="base_link"/>
+  <child link="left_front_wheel_1"/>
+  <axis xyz="-1 0 0"/>
+</joint>
+
+
+<!-- ================= SENSOR JOINTS ================= -->
+
+<joint name="lidar_joint" type="fixed">
+  <origin xyz="0 -0.1 0.1307"/>
+  <parent link="base_link"/>
+  <child link="lidar_link_1"/>
+</joint>
+
+<joint name="imu_joint" type="fixed">
+  <origin xyz="0 -0.25 0.1107"/>
+  <parent link="base_link"/>
+  <child link="imu_link_1"/>
+</joint>
+
+
+</robot>
+

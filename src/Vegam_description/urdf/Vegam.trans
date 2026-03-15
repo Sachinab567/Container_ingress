@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!-- RIGHT FRONT WHEEL -->
+<transmission name="right_front_transmission">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="right_front_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="right_front_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+
+<!-- RIGHT REAR WHEEL -->
+<transmission name="right_rear_transmission">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="right_rear_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="right_rear_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+
+<!-- LEFT REAR WHEEL -->
+<transmission name="left_rear_transmission">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="left_rear_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="left_rear_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+
+<!-- LEFT FRONT WHEEL -->
+<transmission name="left_front_transmission">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="left_front_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="left_front_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+</robot>
+
+

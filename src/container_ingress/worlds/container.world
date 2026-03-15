@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="container_world">
+    <!-- Light Source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- Ground Plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Container (approx 2.45m wide, 2.5m high, 10m long) -->
+    <model name="container">
+      <static>true</static>
+      <!-- Left Wall -->
+      <link name="left_wall">
+        <pose>4.0 1.25 1.25 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10.0 0.1 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10.0 0.1 2.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <!-- Right Wall -->
+      <link name="right_wall">
+        <pose>4.0 -1.25 1.25 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10.0 0.1 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10.0 0.1 2.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <!-- Back Wall -->
+      <link name="back_wall">
+        <pose>9.0 0.0 1.25 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.1 2.4 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.1 2.4 2.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
