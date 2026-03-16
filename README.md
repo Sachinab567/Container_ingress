@@ -22,11 +22,11 @@ This project implements an autonomous navigation system for the **Vegam** robot 
 ## Installation
 ```bash
 # Clone the repository into your ROS2 workspace
-cd ~/amr_ws/src
+cd ~/<work_space>/src
 git clone <repository_url> .
 
 # Build the workspace
-cd ~/amr_ws
+cd ~/<work_space>
 colcon build --packages-select Vegam_description container_ingress
 
 # Source the setup script
